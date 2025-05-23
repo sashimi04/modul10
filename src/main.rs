@@ -78,6 +78,9 @@ fn main() {
         println!("Hishah's Komputer: done!");
     });
 
+    // Additional print to demonstrate order of execution
+    println!("Hishah's Komputer: hey hey");
+
     drop(spawner);
     executor.run();
 }
