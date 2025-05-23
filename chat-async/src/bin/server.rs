@@ -17,9 +17,10 @@ async fn handle_connection(
                 match msg {
                     Some(Ok(msg)) => {
                         if let Some(text) = msg.as_text() {
-                            let send_msg = format!("{addr}: {text}");
+                            // ✅ Tambahkan informasi pengirim (IP:Port)
+                            let send_msg = format!("From {addr}: {text}");
                             println!("{send_msg}");
-                            let _ = bcast_tx.send(send_msg.to_string());
+                            let _ = bcast_tx.send(send_msg);
                         }
                     }
                     Some(Err(e)) => {
