@@ -72,15 +72,31 @@ impl Executor {
 fn main() {
     let (executor, spawner) = new_executor_and_spawner();
 
+    // TASK 1
     spawner.spawn(async {
-        println!("Hishah's Komputer: howdy!");
+        println!("hishah's Komputer: howdy!");
         TimerFuture::new(Duration::new(2, 0)).await;
-        println!("Hishah's Komputer: done!");
+        println!("hishah's Komputer: done!");
     });
 
-    // Additional print to demonstrate order of execution
-    println!("Hishah's Komputer: hey hey");
+    // TASK 2
+    spawner.spawn(async {
+        println!("hishah's Komputer: howdy2!");
+        TimerFuture::new(Duration::new(2, 0)).await;
+        println!("hishah's Komputer: done2!");
+    });
 
-    drop(spawner);
+    // TASK 3
+    spawner.spawn(async {
+        println!("hishah's Komputer: howdy3!");
+        TimerFuture::new(Duration::new(2, 0)).await;
+        println!("hishah's Komputer: done3!");
+    });
+
+    // AWALNYA: drop(spawner);
+  
+     drop(spawner);
+
     executor.run();
 }
+
